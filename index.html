@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    overflow:hidden;
+    background: linear-gradient(to right,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+}
+
+/* PASSWORD SCREEN */
+#lockScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#ff7eb3;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* MAIN CONTENT */
+#main{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:30px;
+    margin:10px;
+    cursor:pointer;
+}
+
+#yes{ background:#00ff88; }
+#no{ background:#ff4444; position:absolute; }
+
+/* FLOATING HEARTS */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:24px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-110vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+<h1>Enter Secret Password 💌</h1>
+<input id="pass" type="password" placeholder="Password">
+<br><br>
+<button onclick="unlock()">Open ❤️</button>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="main">
+<h1>Hey My Love ❤️</h1>
+<h2>Will you marry me? 💍</h2>
+
+<button id="yes" onclick="yesClick()">YES 💖</button>
+<button id="no" onmouseover="moveNo()">NO 😜</button>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+</div>
+
+<script>
+
+/* 🔒 PASSWORD */
+function unlock(){
+    var password="27042004"
+    if(document.getElementById("pass").value==password){
+        document.getElementById("lockScreen").style.display="none";
+        document.getElementById("main").style.display="flex";
+        startHearts();
+    }
+    else{
+        alert("Wrong password 😜");
+    }
+}
+
+/* 💖 FLOATING HEARTS */
+function startHearts(){
+    setInterval(function(){
+        var heart=document.createElement("div");
+        heart.innerHTML="❤️";
+        heart.className="heart";
+        heart.style.left=Math.random()*100+"%";
+        heart.style.fontSize=(20+Math.random()*30)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),6000);
+    },300);
+}
+
+/* 😜 RUNNING NO BUTTON */
+function moveNo(){
+    var btn=document.getElementById("no");
+    btn.style.top=Math.random()*80+"%";
+    btn.style.left=Math.random()*80+"%";
+}
+
+/* 📲 WHATSAPP ALERT WHEN YES CLICKED */
+function yesClick(){
+    window.location.href="https://wa.me/923343934359?text=I%20SAID%20YES%20❤️";
+}
+
+</script>
+
+</body>
+</html>
